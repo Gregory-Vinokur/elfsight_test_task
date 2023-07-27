@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import styles from './Characters.module.scss';
 import Card from '../../components/organisms/CardHomePage/CardHomePage';
 import SearchBar from '../../components/organisms/SearchBar/SearchBar';
@@ -7,10 +7,19 @@ import ProgressBar from '../../components/molecules/progress-bar/ProgressBar';
 import { useSelector } from 'react-redux';
 import { useGetAllCardsQuery } from '../../store/api/api';
 import { IState } from '../../interfaces/IState';
+import Pagination from './../../components/organisms/Pagination/Pagination';
 
 const Characters = () => {
   const { searchTerm } = useSelector((state: IState) => state.search);
-  const { data, isFetching } = useGetAllCardsQuery(searchTerm);
+  const { currentPage } = useSelector((state: IState) => state.pagination);
+  const { data, isFetching } = useGetAllCardsQuery({
+    search: searchTerm,
+    page: currentPage,
+  });
+
+  useEffect(() => {
+    window.scrollTo(0, document.body.scrollHeight);
+  });
 
   return (
     <>
@@ -26,6 +35,7 @@ const Characters = () => {
           )}
         </div>
       )}
+      <Pagination totalPages={data?.info.pages} />
     </>
   );
 };

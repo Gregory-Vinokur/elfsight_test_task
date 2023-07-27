@@ -1,6 +1,9 @@
 import ICharacterCard from './ICharacterCard';
 
 export interface IState {
+  pagination: {
+    currentPage: number;
+  };
   search: {
     searchTerm: string;
     searchBarValue: string;

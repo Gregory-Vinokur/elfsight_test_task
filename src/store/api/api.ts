@@ -3,6 +3,9 @@ import ICharacterCard from './../../interfaces/ICharacterCard';
 import ICharacterModalCard from './../../interfaces/ICharacterModalCard';
 
 interface GetCardsRequest {
+  info: {
+    pages: number;
+  };
   results: ICharacterCard[];
 }
 const BaseUrl = 'https://rickandmortyapi.com/api';
@@ -12,11 +15,12 @@ export const rickAndMortyApi = createApi({
   reducerPath: 'rickAndMortyApi',
   baseQuery: fetchBaseQuery({ baseUrl: BaseUrl }),
   endpoints: (build) => ({
-    getAllCards: build.query<GetCardsRequest, string>({
-      query: (search = '') => ({
+    getAllCards: build.query<GetCardsRequest, { search: string; page: number }>({
+      query: ({ search = '', page = 1 }) => ({
         url: CharacterUrl,
         params: {
           name: search,
+          page
         },
       }),
     }),
