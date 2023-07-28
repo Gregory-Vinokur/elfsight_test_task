@@ -7,6 +7,10 @@ import {
   setSpecies,
   setStatus,
 } from '../../../store/Filter/FilterSlice';
+import {
+  setSearchBarValue,
+  setSearchTerm,
+} from '../../../store/SearchBar/SearchBarSlice';
 
 const Filter = () => {
   const dispatch = useDispatch();
@@ -30,6 +34,8 @@ const Filter = () => {
     dispatch(setStatus(''));
     dispatch(setSpecies(''));
     dispatch(setGender(''));
+    dispatch(setSearchBarValue(''));
+    dispatch(setSearchTerm(''));
   };
 
   return (
