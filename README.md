@@ -1,6 +1,8 @@
 # elfsight_test_task
 
-## Запуск проекта
+# [Deploy](gregory-vinokur-elfsight-test-task.netlify.app)
+
+## Запуск проекта на локальном хосте
 
 ### 1. Склонировать этот репозиторий:
 
