@@ -9,11 +9,14 @@ export interface IState {
     species: string;
     gender: string;
     type: string;
-  }
+  };
   search: {
     searchTerm: string;
     searchBarValue: string;
     searchResults: ICharacterCard[];
     isLoading?: boolean;
+  };
+  types: {
+    typesArr: string[]
   }
 }

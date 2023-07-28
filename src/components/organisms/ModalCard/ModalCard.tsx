@@ -4,6 +4,7 @@ import styles from './ModalCard.module.scss';
 import Modal from '../../templates/Modal/Modal';
 import ProgressBar from './../../molecules/progress-bar/ProgressBar';
 import ICharacterModalCard from '../../../interfaces/ICharacterModalCard';
+import { useEffect } from 'react';
 
 const ModalCard = ({
   id,
@@ -14,6 +15,13 @@ const ModalCard = ({
   card: ICharacterModalCard;
   onClose: () => void;
 }) => {
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
+
   return (
     <Modal className={styles.modalContainer} onClick={onClose}>
       <div className={styles.modalContent}>

@@ -9,6 +9,8 @@ import { useGetAllCardsQuery } from '../../store/api/api';
 import { IState } from '../../interfaces/IState';
 import Pagination from './../../components/organisms/Pagination/Pagination';
 import Filter from './../../components/organisms/Filter/Filter';
+import { useDispatch } from 'react-redux';
+import { setTypes } from '../../store/TypesSlice/TypeSlice';
 
 const Characters = () => {
   const { searchTerm } = useSelector((state: IState) => state.search);
@@ -26,7 +28,16 @@ const Characters = () => {
     type,
   });
 
-  console.log(data?.results.map((el) => el.type));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (data?.results) {
+      const filteredTypes = Array.from(
+        new Set(data.results.map((el) => el.type))
+      ).filter((type) => type !== '');
+      dispatch(setTypes(filteredTypes));
+    }
+  }, [data?.results]);
 
   useEffect(() => {
     if (!isFetching && currentPage !== 1) {
@@ -36,7 +47,7 @@ const Characters = () => {
 
   return (
     <>
-      <Header title="Rick and Morty" />
+      <Header title="Rick and Morty" subtitle="characters" />
       <SearchBar />
       <Filter />
       {isFetching && <ProgressBar />}

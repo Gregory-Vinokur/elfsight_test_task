@@ -18,6 +18,7 @@ const Filter = () => {
   const { status, species, gender, type } = useSelector(
     (state: IState) => state.filter
   );
+  const { typesArr } = useSelector((state: IState) => state.types);
 
   const changeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setStatus(event.target.value.toLocaleLowerCase()));
@@ -68,12 +69,10 @@ const Filter = () => {
         onChange={changeSpecies}
       />
       <SelectWithLabel
-        options={[
-          { value: 'option1', label: 'Parasite' },
-          { value: 'option2', label: 'Mytholog' },
-          { value: 'option3', label: 'Demon' },
-          { value: 'option4', label: 'Clone' },
-        ]}
+        options={typesArr.map((type, index) => ({
+          value: `option${index + 1}`,
+          label: type,
+        }))}
         text="Type:"
         selectValue={type}
         onChange={changeType}
