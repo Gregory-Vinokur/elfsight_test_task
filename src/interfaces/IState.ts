@@ -4,6 +4,11 @@ export interface IState {
   pagination: {
     currentPage: number;
   };
+  filter: {
+    status: string;
+    species: string;
+    gender: string;
+  }
   search: {
     searchTerm: string;
     searchBarValue: string;

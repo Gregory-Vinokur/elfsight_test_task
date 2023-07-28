@@ -8,23 +8,33 @@ import { useSelector } from 'react-redux';
 import { useGetAllCardsQuery } from '../../store/api/api';
 import { IState } from '../../interfaces/IState';
 import Pagination from './../../components/organisms/Pagination/Pagination';
+import Filter from './../../components/organisms/Filter/Filter';
 
 const Characters = () => {
   const { searchTerm } = useSelector((state: IState) => state.search);
   const { currentPage } = useSelector((state: IState) => state.pagination);
+  const { status } = useSelector((state: IState) => state.filter);
+  const { species } = useSelector((state: IState) => state.filter);
+  const { gender } = useSelector((state: IState) => state.filter);
   const { data, isFetching } = useGetAllCardsQuery({
     search: searchTerm,
     page: currentPage,
+    status,
+    species,
+    gender,
   });
 
   useEffect(() => {
-    window.scrollTo(0, document.body.scrollHeight);
-  });
+    if (!isFetching && currentPage !== 1) {
+      window.scrollTo(0, document.body.scrollHeight);
+    }
+  }, [currentPage, isFetching]);
 
   return (
     <>
       <Header title="Characters" />
       <SearchBar />
+      <Filter />
       {isFetching && <ProgressBar />}
       {!isFetching && (
         <div data-testid="cards__container" className={styles.cardsContainer}>

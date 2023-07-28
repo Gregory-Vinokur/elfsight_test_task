@@ -22,11 +22,31 @@ const Pagination = ({ totalPages }: PaginationProps) => {
     }
   };
 
+  const handlePageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const value = event.target.value;
+    if (
+      /^\d*$/.test(value) &&
+      Number(value) >= 1 &&
+      totalPages &&
+      Number(value) <= totalPages
+    ) {
+      dispatch(setCurrentPage(Number(value)));
+    }
+  };
+
   return (
     <div>
       <button onClick={handlePrevButton}>Prev</button>
       <span>
-        {currentPage}/{totalPages}
+        <input
+          pattern="[0-9]*"
+          min="1"
+          max={totalPages}
+          type="text"
+          value={currentPage}
+          onInput={handlePageChange}
+        />
+        /{totalPages}
       </span>
       <button onClick={handleNextButton}>Next</button>
     </div>

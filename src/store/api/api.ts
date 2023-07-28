@@ -15,12 +15,15 @@ export const rickAndMortyApi = createApi({
   reducerPath: 'rickAndMortyApi',
   baseQuery: fetchBaseQuery({ baseUrl: BaseUrl }),
   endpoints: (build) => ({
-    getAllCards: build.query<GetCardsRequest, { search: string; page: number }>({
-      query: ({ search = '', page = 1 }) => ({
+    getAllCards: build.query<GetCardsRequest, { search: string; page: number; status: string; species: string; gender: string }>({
+      query: ({ search = '', page = 1, status = '', species = '', gender = '' }) => ({
         url: CharacterUrl,
         params: {
           name: search,
-          page
+          page,
+          status,
+          species,
+          gender
         },
       }),
     }),
