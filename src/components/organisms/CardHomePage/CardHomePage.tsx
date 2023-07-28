@@ -16,6 +16,8 @@ const Card = ({
   image,
   gender,
   location,
+  type,
+  origin,
 }: ICharacterCard) => {
   const [selectedCard, setSelectedCard] = useState<ICharacterModalCard | null>(
     null
@@ -42,6 +44,8 @@ const Card = ({
             image,
             gender,
             location,
+            type,
+            origin,
           })
         }
       >
@@ -54,9 +58,6 @@ const Card = ({
             <ButtonCard counter={status} />
             <ButtonCard counter={species} />
             <ButtonCard counter={gender} />
-          </div>
-          <div className={styles.cardFooter} role="status">
-            <span>Last location: {location.name}</span>
           </div>
         </div>
       </CardTemplate>

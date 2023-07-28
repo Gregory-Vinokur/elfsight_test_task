@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './SelectWithLabel.module.scss';
-import Label from './../../atoms/label/Label';
 
 type SelectProps = {
   options: SelectOption[];
@@ -22,19 +21,25 @@ const SelectWithLabel = ({
   ...rest
 }: SelectProps) => {
   return (
-    <Label>
+    <label className={styles.dropdown}>
       <select
         value={selectValue}
-        className={styles.select}
+        title=""
+        className={styles.dropdown__select}
         {...rest}
         onChange={onChange}
       >
-        <option value="">{text}</option>
+        <option value="">
+          {text}
+          {selectValue
+            ? selectValue.split('')[0].toUpperCase() + selectValue.slice(1)
+            : ''}
+        </option>
         {options.map(({ value, label }) => {
           return <option key={value}>{label}</option>;
         })}
       </select>
-    </Label>
+    </label>
   );
 };
 

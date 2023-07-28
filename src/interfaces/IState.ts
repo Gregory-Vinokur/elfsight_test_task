@@ -8,6 +8,7 @@ export interface IState {
     status: string;
     species: string;
     gender: string;
+    type: string;
   }
   search: {
     searchTerm: string;

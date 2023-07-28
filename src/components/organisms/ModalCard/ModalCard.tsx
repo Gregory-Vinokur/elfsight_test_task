@@ -39,14 +39,34 @@ const ModalCard = ({
                 />
               </div>
               <div className={styles.cardButtons}>
-                <ButtonCard counter={card.status} />
-                <ButtonCard counter={card.species} />
-                <ButtonCard counter={card.gender} />
+                <ButtonCard
+                  className={styles.cardButton}
+                  counter={card.status}
+                />
+                <ButtonCard
+                  className={styles.cardButton}
+                  counter={card.species}
+                />
+                <ButtonCard
+                  className={styles.cardButton}
+                  counter={card.gender}
+                />
               </div>
             </div>
             <div className={styles.modalFooter}>
-              <span>Last location: {card.location.name}</span>
-              <span>{card.created}</span>
+              <span>
+                <b>Last location:</b> {card.location.name}
+              </span>
+              {card.type && (
+                <span>
+                  <b>Type:</b> {card.type}
+                </span>
+              )}
+              {card.origin.name && (
+                <span>
+                  <b>Origin:</b> {card.origin?.name}
+                </span>
+              )}
             </div>
           </>
         )}

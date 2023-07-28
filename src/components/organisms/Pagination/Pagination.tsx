@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { IState } from './../../../interfaces/IState';
 import { setCurrentPage } from '../../../store/Pagination/PaginationSlice';
+import styles from './Pagination.module.scss';
 
 interface PaginationProps {
   totalPages: number | undefined;
@@ -35,8 +36,10 @@ const Pagination = ({ totalPages }: PaginationProps) => {
   };
 
   return (
-    <div>
-      <button onClick={handlePrevButton}>Prev</button>
+    <div className={styles.container}>
+      <button className={styles.pageBtn} onClick={handlePrevButton}>
+        Prev
+      </button>
       <span>
         <input
           pattern="[0-9]*"
@@ -45,10 +48,13 @@ const Pagination = ({ totalPages }: PaginationProps) => {
           type="text"
           value={currentPage}
           onInput={handlePageChange}
+          className={styles.input}
         />
         /{totalPages}
       </span>
-      <button onClick={handleNextButton}>Next</button>
+      <button className={styles.pageBtn} onClick={handleNextButton}>
+        Next
+      </button>
     </div>
   );
 };

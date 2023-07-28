@@ -4,6 +4,7 @@ interface IFilterState {
   status: string;
   species: string;
   gender: string;
+  type: string;
 }
 
 const filterSlice = createSlice({
@@ -11,7 +12,8 @@ const filterSlice = createSlice({
   initialState: {
     status: '',
     species: '',
-    gender: ''
+    gender: '',
+    type: ''
   } as IFilterState,
   reducers: {
     setStatus(state, action: PayloadAction<string>) {
@@ -22,10 +24,13 @@ const filterSlice = createSlice({
     },
     setGender(state, action: PayloadAction<string>) {
       state.gender = action.payload;
+    },
+    setType(state, action: PayloadAction<string>) {
+      state.type = action.payload;
     }
   },
 });
 
-export const { setStatus, setSpecies, setGender } = filterSlice.actions;
+export const { setStatus, setSpecies, setGender, setType } = filterSlice.actions;
 
 export default filterSlice.reducer;

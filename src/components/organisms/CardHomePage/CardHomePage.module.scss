@@ -17,10 +17,10 @@
 }
 
 .content {
-  padding: 20px;
+  padding: 20px 20px 0px 20px;
   display: flex;
   flex-direction: column;
-  height: 235px;
+  height: 160px;
 }
 
 .CardTitle {
@@ -40,11 +40,4 @@
   margin-bottom: 20px;
   gap: 5px;
   margin-top: 10px;
-}
-
-.cardFooter {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.9rem;
-  color: #808080;
 }

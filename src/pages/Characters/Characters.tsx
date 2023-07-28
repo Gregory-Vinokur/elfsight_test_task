@@ -16,13 +16,17 @@ const Characters = () => {
   const { status } = useSelector((state: IState) => state.filter);
   const { species } = useSelector((state: IState) => state.filter);
   const { gender } = useSelector((state: IState) => state.filter);
+  const { type } = useSelector((state: IState) => state.filter);
   const { data, isFetching } = useGetAllCardsQuery({
     search: searchTerm,
     page: currentPage,
     status,
     species,
     gender,
+    type,
   });
+
+  console.log(data?.results.map((el) => el.type));
 
   useEffect(() => {
     if (!isFetching && currentPage !== 1) {
@@ -32,7 +36,7 @@ const Characters = () => {
 
   return (
     <>
-      <Header title="Characters" />
+      <Header title="Rick and Morty" />
       <SearchBar />
       <Filter />
       {isFetching && <ProgressBar />}

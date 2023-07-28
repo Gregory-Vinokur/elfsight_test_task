@@ -1,0 +1,44 @@
+.container {
+  display: flex;
+  gap: 3px;
+  margin-bottom: 20px;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #388585;
+}
+
+.pageBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #127d8b;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  width: 90px;
+  height: 40px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    background-color: #388585;
+  }
+}
+
+.input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #388585;
+  color: #388585;
+  padding: 0.4rem;
+  font-size: 1.5rem;
+  text-align: center;
+  width: 3rem;
+
+  &:focus {
+    outline: none;
+  }
+}

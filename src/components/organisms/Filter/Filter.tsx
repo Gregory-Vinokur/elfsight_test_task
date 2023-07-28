@@ -6,6 +6,7 @@ import {
   setGender,
   setSpecies,
   setStatus,
+  setType,
 } from '../../../store/Filter/FilterSlice';
 import {
   setSearchBarValue,
@@ -14,25 +15,30 @@ import {
 
 const Filter = () => {
   const dispatch = useDispatch();
-  const { status, species, gender } = useSelector(
+  const { status, species, gender, type } = useSelector(
     (state: IState) => state.filter
   );
 
   const changeStatus = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setStatus(event.target.value));
+    dispatch(setStatus(event.target.value.toLocaleLowerCase()));
   };
 
   const changeSpecies = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setSpecies(event.target.value));
+    dispatch(setSpecies(event.target.value.toLocaleLowerCase()));
   };
 
   const changeGender = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setGender(event.target.value));
+    dispatch(setGender(event.target.value.toLocaleLowerCase()));
+  };
+
+  const changeType = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    dispatch(setType(event.target.value.toLocaleLowerCase()));
   };
 
   const resetFilters = () => {
     dispatch(setStatus(''));
     dispatch(setSpecies(''));
+    dispatch(setType(''));
     dispatch(setGender(''));
     dispatch(setSearchBarValue(''));
     dispatch(setSearchTerm(''));
@@ -63,6 +69,17 @@ const Filter = () => {
       />
       <SelectWithLabel
         options={[
+          { value: 'option1', label: 'Parasite' },
+          { value: 'option2', label: 'Mytholog' },
+          { value: 'option3', label: 'Demon' },
+          { value: 'option4', label: 'Clone' },
+        ]}
+        text="Type:"
+        selectValue={type}
+        onChange={changeType}
+      />
+      <SelectWithLabel
+        options={[
           { value: 'option1', label: 'Male' },
           { value: 'option2', label: 'Female' },
           { value: 'option3', label: 'Genderless' },
@@ -72,7 +89,9 @@ const Filter = () => {
         selectValue={gender}
         onChange={changeGender}
       />
-      <button onClick={resetFilters}>Reset filters</button>
+      <button className={styles.reset} onClick={resetFilters}>
+        Reset filters
+      </button>
     </div>
   );
 };

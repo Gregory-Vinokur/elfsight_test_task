@@ -5,7 +5,12 @@ export default interface ICharacterCard {
   species: string;
   image: string;
   gender: string;
+  type: string;
   location: {
     name: string
+  };
+  origin: {
+    name: string;
+    url: string;
   };
 }
